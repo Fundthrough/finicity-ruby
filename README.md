@@ -22,7 +22,46 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+In your `config/initializers/` add `finicity.rb` file with corresponding values:
+
+    Finicity.configure do |config|
+      config.base_url       = "https://api.finicity.com/aggregation"
+      config.app_key        = "xxxxxxxxxxxxxxxx"
+      config.partner_id     = "xxxxxxxxxxxxxxxx"
+      config.partner_secret = "xxxxxxxxxxxxxxxx"
+      config.app_type       = "testing" # or "active"
+      config.verbose        = false # or "true"
+      config.max_retries    = 1 # How many times do you want to retry the request in case timeout failures.
+    end
+
+### Institutions
+#### List
+
+To get all institutions
+
+    Finicity::Client.institution.list
+    
+To search for specific institution
+
+    Finicity::Client.institution.list(search: "Royal Bank of Canada")
+    
+#### Get specific Institution (with login Credentials)
+Using the `id` you just got from the list above, you can find any specific institution
+    
+    Finicity::Client.institution.get("107132")
+
+
+### Customers 
+#### Add new customer
+Finicity requires `username` to add a new customer. The response will contain the customer ID to be used for subsequent calls.
+
+    response = Finicity::Client.customer.add("YetAnotherBatman")
+    customer_id = response.body.customer.id
+    
+#### Delete customer
+Using the `customer_id` you just got after you add the customer.
+
+    Finicity::Client.scope(customer_id).delete
 
 ## Development
 
