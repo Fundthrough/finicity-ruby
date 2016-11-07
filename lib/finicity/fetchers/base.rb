@@ -33,6 +33,7 @@ module Finicity
           raise Finicity::ApiServerError, response.body if server_error?(response)
 
           Hashie::Mash.new(
+            success?:    response.success?,
             status_code: response.code,
             body:        parse_json(response.body),
             headers:     response.headers

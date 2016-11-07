@@ -1,6 +1,7 @@
 require "finicity/configurable"
 require "finicity/version"
 require "finicity/client"
+require "active_support/all"
 
 module Finicity
   extend Finicity::Configurable

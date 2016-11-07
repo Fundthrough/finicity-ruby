@@ -1,3 +1,5 @@
+require "redis"
+
 module Finicity
   module Fetchers
     class Token < Base
@@ -40,7 +42,7 @@ module Finicity
         end
 
         def redis
-          Redis.new(url: Finicity.configs.partner_secret)
+          Redis.new(url: Finicity.configs.redis_url)
         end
       end
     end

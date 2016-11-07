@@ -1,6 +1,8 @@
+require "hashie"
+
 module Finicity
   module Configurable
-    KEYS = [:base_url, :app_key, :partner_id, :partner_secret, :max_retries, :app_type, :verbose].freeze
+    KEYS = [:redis_url, :app_key, :partner_id, :partner_secret, :max_retries, :app_type, :verbose].freeze
 
     attr_writer(*KEYS)
 
