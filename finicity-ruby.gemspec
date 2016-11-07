@@ -1,7 +1,7 @@
 # coding: utf-8
-lib = File.expand_path('../lib', __FILE__)
+lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'finicity/version'
+require "finicity/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "finicity-ruby"
@@ -9,15 +9,15 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Azzurrio"]
   spec.email         = ["just.azzurri@gmail.com"]
 
-  spec.summary       = %q{Ruby Client for Finicity Aggregation API}
-  spec.description   = %q{Ruby Client for Finicity Aggregation API}
+  spec.summary       = "Ruby Client for Finicity Aggregation API"
+  spec.description   = "Ruby Client for Finicity Aggregation API"
   spec.homepage      = "https://github.com/Fundthrough/finicity-ruby"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org by setting 'allowed_push_host', or
   # delete this section to allow pushing this gem to any host.
   if spec.respond_to?(:metadata)
-    spec.metadata['allowed_push_host'] = "TODO: Set to 'http://mygemserver.com'"
+    spec.metadata["allowed_push_host"] = "TODO: Set to 'http://mygemserver.com'"
   else
     raise "RubyGems 2.0 or newer is required to protect against public gem pushes."
   end

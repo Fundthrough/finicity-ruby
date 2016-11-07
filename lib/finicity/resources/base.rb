@@ -1,4 +1,4 @@
-require "finicity/fetchers"
+require 'finicity/fetchers'
 
 module Finicity
   module Resources

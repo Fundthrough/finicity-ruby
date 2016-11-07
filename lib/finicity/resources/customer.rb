@@ -9,7 +9,7 @@ module Finicity
       end
 
       def self.list(query = {})
-        endpoint = "/v1/customers"
+        endpoint = '/v1/customers'
         query = { query: query } if query.present?
 
         request(:get, endpoint, query)

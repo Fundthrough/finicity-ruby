@@ -11,7 +11,7 @@ module Finicity
       def add_all_mfa(institution_id, mfa_session, questions)
         endpoint = "/v1/customers/#{customer_id}/institutions/#{institution_id}/accounts/addall/mfa"
         body = { mfa_challenges: { questions: questions } }
-        headers = { "MFA-Session" => mfa_session }
+        headers = { 'MFA-Session' => mfa_session }
 
         request(:post, endpoint, body: body, headers: headers)
       end
@@ -38,7 +38,7 @@ module Finicity
         endpoint = "/v1/customers/#{customer_id}/institutionLogins/#{institution_login_id}/accounts/mfa"
 
         body =  { questions: questions }
-        headers = { "MFA-Session" => mfa_session }
+        headers = { 'MFA-Session' => mfa_session }
 
         request(:post, endpoint, body: body, headers: headers)
       end

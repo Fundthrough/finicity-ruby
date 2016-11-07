@@ -1,0 +1,25 @@
+AllCops:
+  TargetRubyVersion: 2.3
+  Exclude:
+    - "bin/**/*"
+    - "db/**/*"
+    - "*.gemspec"
+  DisplayCopNames: true
+
+Lint/EndAlignment:
+  AlignWith: variable
+
+Metrics/LineLength:
+  Max: 120
+
+Documentation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/FileName:
+  Enabled: false
+
+Documentation:
+  Enabled: false

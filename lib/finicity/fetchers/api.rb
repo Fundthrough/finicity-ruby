@@ -1,4 +1,4 @@
-require "finicity/fetchers/token"
+require 'finicity/fetchers/token'
 
 module Finicity
   module Fetchers
@@ -20,7 +20,7 @@ module Finicity
         end
 
         def default_headers
-          { "Finicity-App-Token" => app_token.get }
+          { 'Finicity-App-Token' => app_token.get }
         end
 
         def app_token

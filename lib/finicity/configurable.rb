@@ -1,4 +1,4 @@
-require "hashie"
+require 'hashie'
 
 module Finicity
   module Configurable
