@@ -1,6 +1,7 @@
 # Finicity::Ruby
 [![Build Status](https://travis-ci.org/Fundthrough/finicity-ruby.svg?branch=master)](https://travis-ci.org/Fundthrough/finicity-ruby)
 [![Code Climate](https://codeclimate.com/github/Fundthrough/finicity-ruby/badges/gpa.svg)](https://codeclimate.com/github/Fundthrough/finicity-ruby)
+[![codecov](https://codecov.io/gh/Fundthrough/finicity-ruby/branch/master/graph/badge.svg)](https://codecov.io/gh/Fundthrough/finicity-ruby)
 [![License](http://img.shields.io/:license-MIT-blue.svg?style=flat)](LICENSE)
 
 
