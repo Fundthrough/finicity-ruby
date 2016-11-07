@@ -40,7 +40,7 @@ module Finicity
         end
 
         def redis
-          Redis.new(url: ENV["REDISTOGO_URL"])
+          Redis.new(url: Finicity.configs.partner_secret)
         end
       end
     end

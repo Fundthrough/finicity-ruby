@@ -1,15 +1,15 @@
-require 'httparty'
+require "httparty"
 
 module Finicity
   module Fetchers
     class Base
       include HTTParty
 
-      base_uri ::Finicity.configs.base_url
+      base_uri "https://api.finicity.com/aggregation"
       headers "Content-Type" => "application/json"
       headers "Accept" => "application/json"
-      headers "Finicity-App-Key" => ::Finicity.configs.app_key
-      debug_output $stdout if ::Finicity.configs.verbose
+      headers "Finicity-App-Key" => Finicity.configs.app_key
+      debug_output $stdout if Finicity.configs.verbose
 
       class << self
         def request(method, endpoint, opts = {})
@@ -18,7 +18,7 @@ module Finicity
             begin
               break fetch(method, endpoint, opts)
             rescue Net::ReadTimeout, Errno::ECONNREFUSED, Net::OpenTimeout => e
-              raise e if (tries += 1) > ::Finicity.configs.max_retries.to_i
+              raise e if (tries += 1) > Finicity.configs.max_retries.to_i
             end
           end
         end
@@ -33,7 +33,6 @@ module Finicity
           raise Finicity::ApiServerError, response.body if server_error?(response)
 
           Hashie::Mash.new(
-            success?:    response.success?,
             status_code: response.code,
             body:        parse_json(response.body),
             headers:     response.headers
@@ -43,8 +42,8 @@ module Finicity
         def normalize_request_options(opts)
           opts.clone.tap do |o|
             o[:headers] = default_headers.merge(o[:headers].to_h)
-            o[:body] = jsonify(o[:body]) if o[:body].present?
-            o[:query] = camelcase_keys(o[:query]) if o[:query].present?
+            o[:body]    = jsonify(o[:body]) if o[:body].present?
+            o[:query]   = camelcase_keys(o[:query]) if o[:query].present?
           end
         end
 
