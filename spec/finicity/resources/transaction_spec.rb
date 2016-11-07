@@ -1,10 +1,10 @@
-require 'spec_helper'
+require "spec_helper"
 
 describe Finicity::Resources::Transaction do
   subject { described_class.new(customer_id) }
 
-  let(:customer_id) { '839548210' }
-  let(:account_id) { '149128850' }
+  let(:customer_id) { "839548210" }
+  let(:account_id) { "149128850" }
   let(:from_date) { 6.months.ago }
   let(:to_date) { Time.now }
 
@@ -12,7 +12,7 @@ describe Finicity::Resources::Transaction do
 
   before { allow(api_fetcher).to receive(:request) }
 
-  describe '#list' do
+  describe "#list" do
     let(:method) { :get }
     let(:endpoint) { "/v2/customers/#{customer_id}/transactions" }
     let(:query) { { from_date: from_date.to_i, to_date: to_date.to_i, page: 2 } }
@@ -22,7 +22,7 @@ describe Finicity::Resources::Transaction do
     it { expect(api_fetcher).to have_received(:request).with(method, endpoint, query: query) }
   end
 
-  describe '#list_for_account' do
+  describe "#list_for_account" do
     let(:method) { :get }
     let(:endpoint) { "/v2/customers/#{customer_id}/accounts/#{account_id}/transactions" }
     let(:query) { { from_date: from_date.to_i, to_date: to_date.to_i, page: 2 } }
@@ -32,7 +32,7 @@ describe Finicity::Resources::Transaction do
     it { expect(api_fetcher).to have_received(:request).with(method, endpoint, query: query) }
   end
 
-  describe '#load_historic' do
+  describe "#load_historic" do
     let(:method) { :post }
     let(:endpoint) { "/v1/customers/#{customer_id}/accounts/#{account_id}/transactions/historic" }
 
@@ -41,13 +41,13 @@ describe Finicity::Resources::Transaction do
     it { expect(api_fetcher).to have_received(:request).with(method, endpoint) }
   end
 
-  describe '#load_historic_mfa' do
-    let(:mfa_session) { '14rEngx9aNpw39Qenf' }
-    let(:questions) { [{ text: 'have a bullet?', answer: 'in your head' }] }
+  describe "#load_historic_mfa" do
+    let(:mfa_session) { "14rEngx9aNpw39Qenf" }
+    let(:questions) { [{ text: "have a bullet?", answer: "in your head" }] }
     let(:method) { :post }
     let(:endpoint) { "/v1/customers/#{customer_id}/accounts/#{account_id}/transactions/historic/mfa" }
     let(:body) { { questions: questions } }
-    let(:headers) { { 'MFA-Session' => mfa_session } }
+    let(:headers) { { "MFA-Session" => mfa_session } }
 
     before { subject.load_historic_mfa(account_id, mfa_session, questions) }
 

@@ -1,14 +1,14 @@
-require 'spec_helper'
+require "spec_helper"
 
 describe Finicity::Resources::Customer do
   let(:api_fetcher) { Finicity::Fetchers::API }
 
   before { allow(api_fetcher).to receive(:request) }
 
-  describe '.add' do
-    let(:username) { '3137023c8d12' }
+  describe ".add" do
+    let(:username) { "3137023c8d12" }
     let(:method) { :post }
-    let(:endpoint) { '/v1/customers/testing' }
+    let(:endpoint) { "/v1/customers/testing" }
     let(:body) { { username: username } }
     let(:configs) { double(:configs, app_type: :testing) }
 
@@ -20,26 +20,26 @@ describe Finicity::Resources::Customer do
     it { expect(api_fetcher).to have_received(:request).with(method, endpoint, body: body) }
   end
 
-  describe '.list' do
+  describe ".list" do
     let(:method) { :get }
-    let(:endpoint) { '/v1/customers' }
-    let(:query) { { type: 'testing' } }
+    let(:endpoint) { "/v1/customers" }
+    let(:query) { { type: "testing" } }
 
-    context 'with query' do
+    context "with query" do
       before { described_class.list(query) }
 
       it { expect(api_fetcher).to have_received(:request).with(method, endpoint, query: query) }
     end
 
-    context 'with no query' do
+    context "with no query" do
       before { described_class.list }
 
       it { expect(api_fetcher).to have_received(:request).with(method, endpoint, {}) }
     end
   end
 
-  describe '#delete' do
-    let(:customer_id) { '94857126' }
+  describe "#delete" do
+    let(:customer_id) { "94857126" }
     let(:method) { :delete }
     let(:endpoint) { "/v1/customers/#{customer_id}" }
 

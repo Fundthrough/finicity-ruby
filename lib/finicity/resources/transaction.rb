@@ -23,7 +23,7 @@ module Finicity
 
       def load_historic_mfa(account_id, mfa_session, questions)
         endpoint = "/v1/customers/#{customer_id}/accounts/#{account_id}/transactions/historic/mfa"
-        headers = { 'MFA-Session' => mfa_session }
+        headers = { "MFA-Session" => mfa_session }
         body = { questions: questions }
 
         request(:post, endpoint, body: body, headers: headers)

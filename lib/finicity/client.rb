@@ -1,8 +1,8 @@
-require 'finicity/resources/base'
-require 'finicity/resources/institution'
-require 'finicity/resources/customer'
-require 'finicity/resources/account'
-require 'finicity/resources/transaction'
+require "finicity/resources/base"
+require "finicity/resources/institution"
+require "finicity/resources/customer"
+require "finicity/resources/account"
+require "finicity/resources/transaction"
 
 module Finicity
   class Client
