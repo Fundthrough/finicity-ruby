@@ -7,11 +7,11 @@
 
 Welcome to `finicity-ruby` gem. This gem is built to communicate easily with Finicity's Aggregation API. It only uses the `JSON` representation of the API. Pull requests are welcome to help improving the gem.
 
-- [Installation](#Installation)
-- Setup(#Setup)
-- Usage(#Usage)
-- Contributing(#Contributing)
-- License(#License)
+- [Installation](#installation)
+- [Setup](#setup)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
 
 ## Installation
 
