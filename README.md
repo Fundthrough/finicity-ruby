@@ -1,5 +1,8 @@
 # Finicity::Ruby
 [![Build Status](https://travis-ci.org/Fundthrough/finicity-ruby.svg?branch=master)](https://travis-ci.org/Fundthrough/finicity-ruby)
+[![Code Climate](https://codeclimate.com/github/Fundthrough/finicity-ruby/badges/gpa.svg)](https://codeclimate.com/github/Fundthrough/finicity-ruby)
+[![License](http://img.shields.io/:license-MIT-blue.svg?style=flat)](LICENSE)
+
 
 Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/finicity/ruby`. To experiment with that code, run `bin/console` for an interactive prompt.
 
@@ -41,24 +44,24 @@ In your `config/initializers/` add `finicity.rb` file with corresponding values:
 To get all institutions
 
     Finicity::Client.institution.list
-    
+
 To search for specific institution
 
     Finicity::Client.institution.list(search: "Royal Bank of Canada")
-    
+
 #### Get specific Institution (with login Credentials)
 Using the `id` you just got from the list above, you can find any specific institution
-    
+
     Finicity::Client.institution.get("107132")
 
 
-### Customers 
+### Customers
 #### Add new customer
 Finicity requires `username` to add a new customer. The response will contain the customer ID to be used for subsequent calls.
 
     response = Finicity::Client.customer.add("YetAnotherBatman")
     customer_id = response.body.customer.id
-    
+
 #### Delete customer
 Using the `customer_id` you just got after you add the customer.
 
