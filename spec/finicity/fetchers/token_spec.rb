@@ -4,10 +4,12 @@ describe Finicity::Fetchers::Token do
   let(:response) { Hashie::Mash.new(body: nil) }
   let(:redis) { { "finicity-token-expires-at" => expires_at, "finicity-token" => token } }
   let(:expires_at) { nil }
+  let(:configs) { double(:configs, partner_id: "ID1234", partner_secret: "Secret134", redis: redis) }
+
   let(:token) { nil }
 
   before do
-    allow(Redis).to receive(:new).and_return(redis)
+    allow(Finicity).to receive(:configs).and_return(configs)
     allow(described_class).to receive(:request).and_return(response)
   end
 
@@ -43,12 +45,8 @@ describe Finicity::Fetchers::Token do
 
     let(:response) { double(:response, body: response_body, success?: success) }
     let(:response_body) { double(:token, token: "JuebgKb1pab") }
-    let(:configs) { double(:configs, partner_id: "ID1234", partner_secret: "Secret134", redis_url: nil) }
 
-    before do
-      allow(described_class).to receive(:request).and_return(response)
-      allow(Finicity).to receive(:configs).and_return(configs)
-    end
+    before { allow(described_class).to receive(:request).and_return(response) }
 
     context "successful response" do
       let(:success) { true }

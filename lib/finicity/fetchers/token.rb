@@ -42,7 +42,7 @@ module Finicity
         end
 
         def redis
-          Redis.new(url: Finicity.configs.redis_url)
+          Finicity.configs.redis
         end
       end
     end
