@@ -2,14 +2,14 @@ module Finicity
   module Resources
     class Transaction < Base
       def list(from:, to:, params: {})
-        endpoint = "/v2/customers/#{customer_id}/transactions"
+        endpoint = "/v3/customers/#{customer_id}/transactions"
         query = { from_date: from.to_time.to_i, to_date: to.to_time.to_i }.merge(params)
 
         request(:get, endpoint, query: query)
       end
 
       def list_for_account(account_id, from:, to:, params: {})
-        endpoint = "/v2/customers/#{customer_id}/accounts/#{account_id}/transactions"
+        endpoint = "/v3/customers/#{customer_id}/accounts/#{account_id}/transactions"
         query = { from_date: from.to_time.to_i, to_date: to.to_time.to_i }.merge(params)
 
         request(:get, endpoint, query: query)

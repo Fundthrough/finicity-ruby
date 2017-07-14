@@ -61,8 +61,8 @@ module Finicity
         request(:get, endpoint)
       end
 
-      def update_credentials(account_id, credentials)
-        endpoint = "/v1/customers/#{customer_id}/accounts/#{account_id}/loginForm"
+      def update_credentials(institution_login_id, credentials)
+        endpoint = "/v1/customers/#{customer_id}/institutionLogins/#{institution_login_id}"
         body = { login_form: credentials }
 
         request(:put, endpoint, body: body)
