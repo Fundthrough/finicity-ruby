@@ -14,7 +14,7 @@ describe Finicity::Resources::Transaction do
 
   describe "#list" do
     let(:method) { :get }
-    let(:endpoint) { "/v2/customers/#{customer_id}/transactions" }
+    let(:endpoint) { "/v3/customers/#{customer_id}/transactions" }
     let(:query) { { from_date: from_date.to_i, to_date: to_date.to_i, page: 2 } }
 
     before { subject.list(from: from_date, to: to_date, params: { page: 2 }) }
@@ -24,7 +24,7 @@ describe Finicity::Resources::Transaction do
 
   describe "#list_for_account" do
     let(:method) { :get }
-    let(:endpoint) { "/v2/customers/#{customer_id}/accounts/#{account_id}/transactions" }
+    let(:endpoint) { "/v3/customers/#{customer_id}/accounts/#{account_id}/transactions" }
     let(:query) { { from_date: from_date.to_i, to_date: to_date.to_i, page: 2 } }
 
     before { subject.list_for_account(account_id, from: from_date, to: to_date, params: { page: 2 }) }

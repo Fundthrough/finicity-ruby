@@ -107,11 +107,11 @@ describe Finicity::Resources::Account do
 
   describe "#update_credentials" do
     let(:method) { :put }
-    let(:endpoint) { "/v1/customers/#{customer_id}/accounts/#{account_id}/loginForm" }
+    let(:endpoint) { "/v1/customers/#{customer_id}/institutionLogins/#{institution_login_id}" }
     let(:credentials) { [{ name: "username", value: "house" }, { name: "password", value: "pass" }] }
     let(:body) { { login_form: credentials } }
 
-    before { subject.update_credentials(account_id, credentials) }
+    before { subject.update_credentials(institution_login_id, credentials) }
 
     it { expect(api_fetcher).to have_received(:request).with(method, endpoint, body: body) }
   end
