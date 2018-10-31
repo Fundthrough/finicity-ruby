@@ -1,12 +1,12 @@
 module Finicity
   module Resources
     class Customer < Base
-      # E.g. Finicity.customer.add(username: 'test@example.com', firstName: 'Test', lastName: 'User')
-      def self.add(username:, firstName:, lastName:)
+      # E.g. Finicity.customer.create(username: 'test@example.com', first_name: 'Test', last_name: 'User')
+      def self.create(username:, first_name:, last_name:)
         request(
           :post,
           "/aggregation/v1/customers/#{Finicity.configs.app_type}",
-          body: { username: username, firstName: firstName, lastName: lastName }
+          body: { username: username, firstName: first_name, lastName: last_name }
         )
       end
 

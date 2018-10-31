@@ -5,15 +5,15 @@ describe Finicity::Resources::Customer do
 
   before { allow(api_fetcher).to receive(:request) }
 
-  describe ".add" do
+  describe ".create" do
     let(:method) { :post }
     let(:endpoint) { "/aggregation/v1/customers/testing" }
-    let(:body) { { firstName: 'Test', lastName: 'User', username: '3137023c8d12' } }
+    let(:body) { { first_name: 'Test', last_name: 'User', username: '3137023c8d12' } }
     let(:configs) { double(:configs, app_type: :testing) }
 
     before do
       allow(Finicity).to receive(:configs).and_return(configs)
-      described_class.add(firstName: 'Test', lastName: 'User', username: '3137023c8d12')
+      described_class.create(first_name: 'Test', last_name: 'User', username: '3137023c8d12')
     end
 
     it { expect(api_fetcher).to have_received(:request).with(method, endpoint, body: body) }
