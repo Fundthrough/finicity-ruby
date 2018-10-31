@@ -1,14 +1,16 @@
-require "httparty"
+require 'httparty'
+require 'rack/mime'
 
 module Finicity
   module Fetchers
     class Base
       include HTTParty
 
-      base_uri "https://api.finicity.com/aggregation"
-      headers "Content-Type" => "application/json"
-      headers "Accept" => "application/json"
-      headers "Finicity-App-Key" => Finicity.configs.app_key
+      base_uri 'https://api.finicity.com'
+      headers 'Content-Type' => Rack::Mime::MIME_TYPES['.json']
+      headers 'Accept' => Rack::Mime::MIME_TYPES['.json']
+      headers 'Finicity-App-Key' => Finicity.configs.app_key
+
       debug_output $stdout if Finicity.configs.verbose
 
       class << self
@@ -69,7 +71,9 @@ module Finicity
 
         def other_content_type?(response)
           content_type = response.headers["Content-Type"]&.downcase
-          content_type.present? && content_type != "application/json"
+
+          # /decisioning/xxx resources add on ";charset=utf-8", so we need to account for that
+          content_type.present? && content_type !~ /^application\/json(;charset=utf-8$)?/
         end
 
         def default_headers

@@ -2,70 +2,66 @@ module Finicity
   module Resources
     class Account < Base
       def add_all(institution_id, credentials)
-        endpoint = "/v1/customers/#{customer_id}/institutions/#{institution_id}/accounts/addall"
-        body = { credentials: credentials }
-
-        request(:post, endpoint, body: body)
+        request(
+          :post,
+          "/aggregation/v1/customers/#{customer_id}/institutions/#{institution_id}/accounts/addall",
+          body: { credentials: credentials }
+        )
       end
 
       def add_all_mfa(institution_id, mfa_session, questions)
-        endpoint = "/v1/customers/#{customer_id}/institutions/#{institution_id}/accounts/addall/mfa"
-        body = { mfa_challenges: { questions: questions } }
-        headers = { "MFA-Session" => mfa_session }
-
-        request(:post, endpoint, body: body, headers: headers)
+        request(
+          :post,
+          "/aggregation/v1/customers/#{customer_id}/institutions/#{institution_id}/accounts/addall/mfa",
+          body: { mfa_challenges: { questions: questions } },
+          headers: { 'MFA-Session' => mfa_session }
+        )
       end
 
+      # E.g. Finicity::Client.scope(10001).account.list
       def list
-        endpoint = "/v1/customers/#{customer_id}/accounts"
-
-        request(:get, endpoint)
+        request(:get, "/aggregation/v1/customers/#{customer_id}/accounts")
       end
 
       def activate(institution_id, accounts)
-        endpoint = "/v2/customers/#{customer_id}/institutions/#{institution_id}/accounts"
-
-        request(:put, endpoint, body: { accounts: accounts })
+        request(
+          :put,
+          "/aggregation/v2/customers/#{customer_id}/institutions/#{institution_id}/accounts",
+          body: { accounts: accounts }
+        )
       end
 
       def refresh(institution_login_id)
-        endpoint = "/v1/customers/#{customer_id}/institutionLogins/#{institution_login_id}/accounts"
-
-        request(:post, endpoint)
+        request(:post, "/aggregation/v1/customers/#{customer_id}/institutionLogins/#{institution_login_id}/accounts")
       end
 
       def refresh_mfa(institution_login_id, mfa_session, questions)
-        endpoint = "/v1/customers/#{customer_id}/institutionLogins/#{institution_login_id}/accounts/mfa"
-
-        body =  { questions: questions }
-        headers = { "MFA-Session" => mfa_session }
-
-        request(:post, endpoint, body: body, headers: headers)
+        request(
+          :post,
+          "/aggregation/v1/customers/#{customer_id}/institutionLogins/#{institution_login_id}/accounts/mfa",
+          body: { questions: questions },
+          headers: { "MFA-Session" => mfa_session }
+        )
       end
 
       def get(account_id)
-        endpoint = "/v1/customers/#{customer_id}/accounts/#{account_id}"
-
-        request(:get, endpoint)
+        request(:get, "/aggregation/v1/customers/#{customer_id}/accounts/#{account_id}")
       end
 
       def delete(account_id)
-        endpoint = "/v1/customers/#{customer_id}/accounts/#{account_id}"
-
-        request(:delete, endpoint)
+        request(:delete, "/aggregation/v1/customers/#{customer_id}/accounts/#{account_id}")
       end
 
       def credentials(account_id)
-        endpoint = "/v1/customers/#{customer_id}/accounts/#{account_id}/loginForm"
-
-        request(:get, endpoint)
+        request(:get, "/aggregation/v1/customers/#{customer_id}/accounts/#{account_id}/loginForm")
       end
 
       def update_credentials(institution_login_id, credentials)
-        endpoint = "/v1/customers/#{customer_id}/institutionLogins/#{institution_login_id}"
-        body = { login_form: credentials }
-
-        request(:put, endpoint, body: body)
+        request(
+          :put,
+          "/aggregation/v1/customers/#{customer_id}/institutionLogins/#{institution_login_id}",
+          body: { login_form: credentials }
+        )
       end
     end
   end

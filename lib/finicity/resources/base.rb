@@ -1,4 +1,4 @@
-require "finicity/fetchers"
+require 'finicity/fetchers'
 
 module Finicity
   module Resources
@@ -15,6 +15,8 @@ module Finicity
 
       protected
 
+      # TODO: can be combined with .request above
+      # Proxy used by the resource classes
       def request(*args)
         self.class.request(*args)
       end

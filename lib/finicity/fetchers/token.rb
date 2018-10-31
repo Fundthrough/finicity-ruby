@@ -1,4 +1,4 @@
-require "redis"
+require 'redis'
 
 module Finicity
   module Fetchers
@@ -12,7 +12,7 @@ module Finicity
         def refresh
           response = fetch_new_one
 
-          raise Finicity::TokenRefreshError, response.body unless response.success?
+          raise Finicity::TokenRefreshError, response.body if !response.success?
 
           redis["finicity-token-expires-at"] = 90.minutes.from_now.to_s
           redis["finicity-token"] = response.body.token
@@ -21,12 +21,11 @@ module Finicity
         protected
 
         def fetch_new_one
-          endpoint = "/v2/partners/authentication"
           body = {
             partner_id: Finicity.configs.partner_id,
             partner_secret: Finicity.configs.partner_secret
           }
-          request(:post, endpoint, body: body)
+          request(:post, '/aggregation/v2/partners/authentication', body: body)
         end
 
         def token_expired?

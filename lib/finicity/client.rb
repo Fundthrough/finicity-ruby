@@ -1,8 +1,9 @@
-require "finicity/resources/base"
-require "finicity/resources/institution"
-require "finicity/resources/customer"
-require "finicity/resources/account"
-require "finicity/resources/transaction"
+require 'finicity/resources/base'
+require 'finicity/resources/institution'
+require 'finicity/resources/consumer'
+require 'finicity/resources/customer'
+require 'finicity/resources/account'
+require 'finicity/resources/transaction'
 
 module Finicity
   class Client
@@ -18,6 +19,10 @@ module Finicity
 
     def self.institution
       Finicity::Resources::Institution
+    end
+
+    def consumer
+      @consumer ||= Finicity::Resources::Consumer.new(customer_id)
     end
 
     def customer
@@ -38,4 +43,8 @@ module Finicity
       @customer_id = customer_id
     end
   end
+
+  C = Client if !defined?(C)
+  ::FC = Finicity::C if !defined?(::FC)
 end
+::F = Finicity if !defined?(::F)

@@ -7,7 +7,7 @@ describe Finicity::Resources::Institution do
 
   describe ".list" do
     let(:method) { :get }
-    let(:endpoint) { "/v1/institutions" }
+    let(:endpoint) { "/aggregation/v1/institutions" }
 
     context "with query" do
       before { described_class.list(search: "Canada") }
@@ -25,7 +25,7 @@ describe Finicity::Resources::Institution do
   describe ".get" do
     let(:institution_id) { "128594" }
     let(:method) { :get }
-    let(:endpoint) { "/v1/institutions/#{institution_id}/details" }
+    let(:endpoint) { "/aggregation/v1/institutions/#{institution_id}/details" }
 
     before { described_class.get(institution_id) }
 

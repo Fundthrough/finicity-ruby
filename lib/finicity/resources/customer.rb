@@ -1,24 +1,27 @@
 module Finicity
   module Resources
     class Customer < Base
-      def self.add(username)
-        endpoint = "/v1/customers/#{Finicity.configs.app_type}"
-        body = { username: username }
-
-        request(:post, endpoint, body: body)
+      # E.g. Finicity.customer.add(username: 'test@example.com', firstName: 'Test', lastName: 'User')
+      def self.add(username:, firstName:, lastName:)
+        request(
+          :post,
+          "/aggregation/v1/customers/#{Finicity.configs.app_type}",
+          body: { username: username, firstName: firstName, lastName: lastName }
+        )
       end
 
+      # E.g. Finicity.customer.list(search: 'jake')
+      #      Finicity.customer.list(username: 'exact-username')
+      # Some other options at https://community.finicity.com/s/article/201703219-Customers#get_customers
       def self.list(query = {})
-        endpoint = "/v1/customers"
         query = { query: query } if query.present?
 
-        request(:get, endpoint, query)
+        request(:get, '/aggregation/v1/customers', query)
       end
 
+      # E.g. Finicity.scope(10001).delete
       def delete
-        endpoint = "/v1/customers/#{customer_id}"
-
-        request(:delete, endpoint)
+        request(:delete, "/aggregation/v1/customers/#{customer_id}")
       end
     end
   end

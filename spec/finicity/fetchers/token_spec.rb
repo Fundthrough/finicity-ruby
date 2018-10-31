@@ -51,7 +51,7 @@ describe Finicity::Fetchers::Token do
     context "successful response" do
       let(:success) { true }
       let(:method) { :post }
-      let(:endpoint) { "/v2/partners/authentication" }
+      let(:endpoint) { "/aggregation/v2/partners/authentication" }
       let(:body) { { partner_id: configs.partner_id, partner_secret: configs.partner_secret } }
 
       before { subject }
