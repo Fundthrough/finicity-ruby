@@ -56,6 +56,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency(%q<rubocop>.freeze, [">= 0"])
   s.add_development_dependency 'fakeredis', '~> 0.7.0'
   s.add_development_dependency 'awesome_print', '1.8.0'
+  s.add_development_dependency 'byebug', '10.0.2'
 
   s.add_runtime_dependency(%q<hashie>.freeze, ["~> 3.4.4"])
   s.add_runtime_dependency(%q<httparty>.freeze, ["~> 0.14.0"])

@@ -35,18 +35,21 @@ module Finicity
           raise Finicity::ApiServerError, response.body if server_error?(response)
 
           Hashie::Mash.new(
-            success?:    response.success?,
+            method: method,
+            endpoint: endpoint,
+            options: request_opts,
+            success?: response.success?,
             status_code: response.code,
-            body:        parse_json(response.body),
-            headers:     response.headers
+            body: parse_json(response.body),
+            headers: response.headers
           )
         end
 
         def normalize_request_options(opts)
           opts.clone.tap do |o|
             o[:headers] = default_headers.merge(o[:headers].to_h)
-            o[:body]    = jsonify(o[:body]) if o[:body].present?
-            o[:query]   = camelcase_keys(o[:query]) if o[:query].present?
+            o[:body] = jsonify(o[:body]) if o[:body].present?
+            o[:query] = camelcase_keys(o[:query]) if o[:query].present?
           end
         end
 
