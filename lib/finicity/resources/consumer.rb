@@ -14,13 +14,13 @@ module Finicity
       end
 
       # E.g. Finicity::Client.scope(10001).consumer.get_connect_link(
-      #        partner_secret: 'xxx',
+      #        partner_id: 1111,
       #        consumer_id: 1,
       #        type: 'aggregation',
       #        redirect_uri: 'https://example.com/redirect'
       #      )
       def get_connect_link(
-        partner_secret:,
+        partner_id:,
         consumer_id:,
         type:,
         redirect_uri:,
@@ -31,7 +31,7 @@ module Finicity
         body = {
           customerId: customer_id.to_s,
           consumerId: consumer_id,
-          partnerId: partner_secret,
+          partnerId: partner_id.to_s,
           type: type,
           redirectUri: redirect_uri
         }
