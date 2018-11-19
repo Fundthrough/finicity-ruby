@@ -19,7 +19,7 @@ module Finicity
         request(:get, '/aggregation/v1/customers', query)
       end
 
-      # E.g. Finicity.scope(10001).delete
+      # E.g. Finicity.scope(10001).customer.delete
       def delete
         request(:delete, "/aggregation/v1/customers/#{customer_id}")
       end

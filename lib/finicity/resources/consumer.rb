@@ -2,7 +2,7 @@ module Finicity
   module Resources
     class Consumer < Base
 
-      # E.g. Finicity::Client.scope(10001).consumer.create(body: {...})
+      # E.g. Finicity::Client.scope(10001).consumer.create({...})
       # Look at https://community.finicity.com/s/article/Report-Consumers#create_consumer for required body options
       def create(body)
         request(:post, "/decisioning/v1/customers/#{customer_id}/consumer", body: body)

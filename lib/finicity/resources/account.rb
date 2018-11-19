@@ -63,6 +63,29 @@ module Finicity
           body: { login_form: credentials }
         )
       end
+
+      # E.g. Finicity::Client.scope(10001).enable_txpush(1, 'https://example.com/redirect')
+      def enable_txpush(account_id, webhook_url)
+        request(
+          :post,
+          "/aggregation/v1/customers/#{customer_id}/accounts/#{account_id}/txpush",
+          body: { callback_url: webhook_url }
+        )
+      end
+
+      def disable_txpush(account_id)
+        request(:delete, "/aggregation/v1/customers/#{customer_id}/#{account_id}/txpush")
+      end
+
+      # Only for test accounts
+      # E.g. Finicity::Client.scope(10001).account.add_test_transaction(1, {...})
+      def add_test_transaction(account_id, transaction_body)
+        request(
+          :post,
+          "/aggregation/v1/customers/#{customer_id}/accounts/#{account_id}/transactions",
+          body: transaction_body
+        )
+      end
     end
   end
 end

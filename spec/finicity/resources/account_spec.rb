@@ -115,4 +115,16 @@ describe Finicity::Resources::Account do
 
     it { expect(api_fetcher).to have_received(:request).with(method, endpoint, body: body) }
   end
+
+  describe '#enable_txpush' do
+    skip 'do me!'
+  end
+
+  describe '#disable_txpush' do
+    skip 'do me!'
+  end
+
+  describe '#add_test_transaction' do
+    skip 'do me!'
+  end
 end
