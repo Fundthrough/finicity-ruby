@@ -64,7 +64,7 @@ module Finicity
         )
       end
 
-      # E.g. Finicity::Client.scope(10001).enable_txpush(1, 'https://example.com/redirect')
+      # E.g. Finicity::Client.scope(10001).account.enable_txpush(1, 'https://example.com/redirect')
       def enable_txpush(account_id, webhook_url)
         request(
           :post,
@@ -74,7 +74,7 @@ module Finicity
       end
 
       def disable_txpush(account_id)
-        request(:delete, "/aggregation/v1/customers/#{customer_id}/#{account_id}/txpush")
+        request(:delete, "/aggregation/v1/customers/#{customer_id}/accounts/#{account_id}/txpush")
       end
 
       # Only for test accounts
