@@ -2,7 +2,7 @@ require "spec_helper"
 
 describe Finicity::Fetchers::API do
   let(:method) { :get }
-  let(:endpoint) { "/v1/customers/895786124/accounts" }
+  let(:endpoint) { "/aggregation/v1/customers/895786124/accounts" }
   let(:response1) { double(:response, body: { code: code }, headers: headers, code: status_code, success?: true) }
   let(:response2) { response1 }
   let(:headers) { { "Content-Type" => "application/json" } }

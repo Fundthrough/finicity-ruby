@@ -21,7 +21,7 @@ module Finicity
         protected
 
         def fetch_new_one
-          endpoint = "/v2/partners/authentication"
+          endpoint = "/aggregation/v2/partners/authentication"
           body = {
             partner_id: Finicity.configs.partner_id,
             partner_secret: Finicity.configs.partner_secret

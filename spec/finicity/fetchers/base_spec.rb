@@ -2,7 +2,7 @@ require "spec_helper"
 
 describe Finicity::Fetchers::Base do
   let(:method) { :post }
-  let(:endpoint) { "/v1/customers" }
+  let(:endpoint) { "/aggregation/v1/customers" }
   let(:opts) { { body: request_body, headers: request_headers, query: query } }
   let(:request_body) { { customer: { username: "Batman", first_name: "Bruce", last_name: "Wayne" } } }
   let(:request_headers) { { "Custom-Header" => "1294854" } }

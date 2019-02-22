@@ -15,7 +15,7 @@ describe Finicity::Resources::Account do
   describe "#add_all" do
     let(:credentials) { [{ name: "username", value: "house" }, { name: "password", value: "pass" }] }
     let(:method) { :post }
-    let(:endpoint) { "/v1/customers/#{customer_id}/institutions/#{institution_id}/accounts/addall" }
+    let(:endpoint) { "/aggregation/v1/customers/#{customer_id}/institutions/#{institution_id}/accounts/addall" }
     let(:body) { { credentials: credentials } }
 
     before { subject.add_all(institution_id, credentials) }
@@ -27,7 +27,7 @@ describe Finicity::Resources::Account do
     let(:mfa_session) { "14rEngx9aNpw39Qenf" }
     let(:questions) { [{ text: "small world?", answer: "sure" }] }
     let(:method) { :post }
-    let(:endpoint) { "/v1/customers/#{customer_id}/institutions/#{institution_id}/accounts/addall/mfa" }
+    let(:endpoint) { "/aggregation/v1/customers/#{customer_id}/institutions/#{institution_id}/accounts/addall/mfa" }
     let(:body) { { mfa_challenges: { questions: questions } } }
     let(:headers) { { "MFA-Session" => mfa_session } }
 
@@ -38,7 +38,7 @@ describe Finicity::Resources::Account do
 
   describe "#list" do
     let(:method) { :get }
-    let(:endpoint) { "/v1/customers/#{customer_id}/accounts" }
+    let(:endpoint) { "/aggregation/v1/customers/#{customer_id}/accounts" }
 
     before { subject.list }
 
@@ -47,7 +47,7 @@ describe Finicity::Resources::Account do
 
   describe "#activate" do
     let(:method) { :put }
-    let(:endpoint) { "/v2/customers/#{customer_id}/institutions/#{institution_id}/accounts" }
+    let(:endpoint) { "/aggregation/v2/customers/#{customer_id}/institutions/#{institution_id}/accounts" }
     let(:accounts) { [{ id: 12, type: :loan }] }
     let(:body) { { accounts: accounts } }
 
@@ -58,7 +58,7 @@ describe Finicity::Resources::Account do
 
   describe "#refresh" do
     let(:method) { :post }
-    let(:endpoint) { "/v1/customers/#{customer_id}/institutionLogins/#{institution_login_id}/accounts" }
+    let(:endpoint) { "/aggregation/v1/customers/#{customer_id}/institutionLogins/#{institution_login_id}/accounts" }
 
     before { subject.refresh(institution_login_id) }
 
@@ -69,7 +69,7 @@ describe Finicity::Resources::Account do
     let(:mfa_session) { "14rEngx9aNpw39Qenf" }
     let(:questions) { [{ text: "after all this time?", answer: "always" }] }
     let(:method) { :post }
-    let(:endpoint) { "/v1/customers/#{customer_id}/institutionLogins/#{institution_login_id}/accounts/mfa" }
+    let(:endpoint) { "/aggregation/v1/customers/#{customer_id}/institutionLogins/#{institution_login_id}/accounts/mfa" }
     let(:body) { { questions: questions } }
     let(:headers) { { "MFA-Session" => mfa_session } }
 
@@ -80,7 +80,7 @@ describe Finicity::Resources::Account do
 
   describe "#get" do
     let(:method) { :get }
-    let(:endpoint) { "/v1/customers/#{customer_id}/accounts/#{account_id}" }
+    let(:endpoint) { "/aggregation/v1/customers/#{customer_id}/accounts/#{account_id}" }
 
     before { subject.get(account_id) }
 
@@ -89,7 +89,7 @@ describe Finicity::Resources::Account do
 
   describe "#delete" do
     let(:method) { :delete }
-    let(:endpoint) { "/v1/customers/#{customer_id}/accounts/#{account_id}" }
+    let(:endpoint) { "/aggregation/v1/customers/#{customer_id}/accounts/#{account_id}" }
 
     before { subject.delete(account_id) }
 
@@ -98,7 +98,7 @@ describe Finicity::Resources::Account do
 
   describe "#credentials" do
     let(:method) { :get }
-    let(:endpoint) { "/v1/customers/#{customer_id}/accounts/#{account_id}/loginForm" }
+    let(:endpoint) { "/aggregation/v1/customers/#{customer_id}/accounts/#{account_id}/loginForm" }
 
     before { subject.credentials(account_id) }
 
@@ -107,7 +107,7 @@ describe Finicity::Resources::Account do
 
   describe "#update_credentials" do
     let(:method) { :put }
-    let(:endpoint) { "/v1/customers/#{customer_id}/institutionLogins/#{institution_login_id}" }
+    let(:endpoint) { "/aggregation/v1/customers/#{customer_id}/institutionLogins/#{institution_login_id}" }
     let(:credentials) { [{ name: "username", value: "house" }, { name: "password", value: "pass" }] }
     let(:body) { { login_form: credentials } }
 

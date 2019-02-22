@@ -8,7 +8,7 @@ describe Finicity::Resources::Customer do
   describe ".add" do
     let(:username) { "3137023c8d12" }
     let(:method) { :post }
-    let(:endpoint) { "/v1/customers/testing" }
+    let(:endpoint) { "/aggregation/v1/customers/testing" }
     let(:body) { { username: username } }
     let(:configs) { double(:configs, app_type: :testing) }
 
@@ -22,7 +22,7 @@ describe Finicity::Resources::Customer do
 
   describe ".list" do
     let(:method) { :get }
-    let(:endpoint) { "/v1/customers" }
+    let(:endpoint) { "/aggregation/v1/customers" }
     let(:query) { { type: "testing" } }
 
     context "with query" do
@@ -41,7 +41,7 @@ describe Finicity::Resources::Customer do
   describe "#delete" do
     let(:customer_id) { "94857126" }
     let(:method) { :delete }
-    let(:endpoint) { "/v1/customers/#{customer_id}" }
+    let(:endpoint) { "/aggregation/v1/customers/#{customer_id}" }
 
     before { described_class.new(customer_id).delete }
 
