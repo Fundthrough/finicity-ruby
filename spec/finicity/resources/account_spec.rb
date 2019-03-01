@@ -115,4 +115,26 @@ describe Finicity::Resources::Account do
 
     it { expect(api_fetcher).to have_received(:request).with(method, endpoint, body: body) }
   end
+
+  describe "#owner_verification" do
+    let(:method) { :get }
+    let(:endpoint) { "/decisioning/v1/customers/#{customer_id}/accounts/#{account_id}/owner" }
+
+    before { subject.owner_verification(account_id) }
+
+    it { expect(api_fetcher).to have_received(:request).with(method, endpoint) }
+  end
+
+  describe "#owner_verification_mfa" do
+    let(:method) { :post }
+    let(:mfa_session) { "14rEngx9aNpw39Qenf" }
+    let(:questions) { [{ text: "small world?", answer: "sure" }] }
+    let(:endpoint) { "/decisioning/v1/customers/#{customer_id}/accounts/#{account_id}/owner/mfa" }
+    let(:body) { { questions: questions } }
+    let(:headers) { { "MFA-Session" => mfa_session } }
+
+    before { subject.owner_verification_mfa(account_id, mfa_session, questions) }
+
+    it { expect(api_fetcher).to have_received(:request).with(method, endpoint, body: body, headers: headers) }
+  end
 end
