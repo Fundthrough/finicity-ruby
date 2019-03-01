@@ -38,4 +38,8 @@ module Finicity
   # Description: Missing Parameter
   # Required Action: A required field was left blank, Submit the request again, with valid text
   MISSING_PARAMS_CODES = [10_005].freeze
+
+  # Description: Account details not found
+  # Required Action: Nothing. This is an informational message.
+  ACCOUNT_DETAILS_NOT_FOUND = [38_008].freeze
 end

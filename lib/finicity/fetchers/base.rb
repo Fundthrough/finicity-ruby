@@ -5,7 +5,7 @@ module Finicity
     class Base
       include HTTParty
 
-      base_uri "https://api.finicity.com/aggregation"
+      base_uri "https://api.finicity.com/"
       headers "Content-Type" => "application/json"
       headers "Accept" => "application/json"
       headers "Finicity-App-Key" => Finicity.configs.app_key
@@ -69,7 +69,7 @@ module Finicity
 
         def other_content_type?(response)
           content_type = response.headers["Content-Type"]&.downcase
-          content_type.present? && content_type != "application/json"
+          content_type.present? && !content_type.include?("application/json")
         end
 
         def default_headers
