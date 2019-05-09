@@ -23,6 +23,14 @@ module Finicity
       def delete
         request(:delete, "/aggregation/v1/customers/#{customer_id}")
       end
+
+      # Non-interactive accounts refresh for customer. See "Refresh Customer Accounts (non-interactive)"
+      # https://developer.finicity.com/admin/docs
+      #
+      # E.g. Finicity::Client.scope(10001).customer.refresh
+      def refresh
+        request(:post, "/aggregation/v1/customers/#{customer_id}/accounts")
+      end
     end
   end
 end
