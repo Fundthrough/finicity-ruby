@@ -95,7 +95,7 @@ To list all created customers from Finicity.
 #### Delete customer
 Using the `customer_id` you just got after you add the customer.
 
-    Finicity::Client.scope(customer_id).delete
+    Finicity::Client.scope(customer_id).customer.delete
     
 ### 3. Accounts
 #### Discover and add all accounts
