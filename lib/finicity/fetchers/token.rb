@@ -14,6 +14,8 @@ module Finicity
 
           raise Finicity::TokenRefreshError, response.body unless response.success?
 
+          puts ">>>>> Finicity::Fetchers::Token#refresh"
+          puts redis.to_s
           redis["finicity-token-expires-at"] = 90.minutes.from_now.to_s
           redis["finicity-token"] = response.body.token
         end
