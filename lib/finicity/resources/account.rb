@@ -43,8 +43,18 @@ module Finicity
         request(:post, endpoint, body: body, headers: headers)
       end
 
+      def owner(account_id)
+        endpoint = "/aggregation/v1/customers/#{customer_id}/accounts/#{account_id}/owner"
+        request(:get, endpoint)
+      end
+
+      def details(account_id)
+        endpoint = "/aggregation/v1/customers/#{customer_id}/accounts/#{account_id}/details"
+        request(:get, endpoint)
+      end
+
       def get(account_id)
-        endpoint = "/aggregation/v1/customers/#{customer_id}/accounts/#{account_id}"
+        endpoint = "/aggregation/v2/customers/#{customer_id}/accounts/#{account_id}"
 
         request(:get, endpoint)
       end
