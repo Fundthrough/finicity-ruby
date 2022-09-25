@@ -3,6 +3,7 @@ require "finicity/resources/institution"
 require "finicity/resources/customer"
 require "finicity/resources/account"
 require "finicity/resources/transaction"
+require "finicity/resources/connect_url"
 
 module Finicity
   class Client
@@ -20,6 +21,10 @@ module Finicity
       Finicity::Resources::Institution
     end
 
+    def self.connect_url
+      Finicity::Resources::ConnectUrl
+    end
+
     def customer
       @customer ||= Finicity::Resources::Customer.new(customer_id)
     end
@@ -30,6 +35,10 @@ module Finicity
 
     def transaction
       @transaction ||= Finicity::Resources::Transaction.new(customer_id)
+    end
+
+    def connect_url
+      @connect_url ||= Finicity::Resources::ConnectUrl.new(customer_id)
     end
 
     protected
