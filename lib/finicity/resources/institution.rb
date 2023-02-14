@@ -2,7 +2,7 @@ module Finicity
   module Resources
     class Institution < Base
       def self.list(query = {})
-        endpoint = "/aggregation/v1/institutions"
+        endpoint = "/aggregation/v2/institutions"
         query = { query: query } if query.present?
 
         request(:get, endpoint, query)
@@ -14,7 +14,7 @@ module Finicity
       end
 
       def self.get(institution_id)
-        endpoint = "/aggregation/v1/institutions/#{institution_id}/details"
+        endpoint = "/aggregation/v2/institutions/#{institution_id}/details"
         request(:get, endpoint)
       end
     end
