@@ -14,7 +14,7 @@ module Finicity
       end
 
       def self.get(institution_id)
-        endpoint = "/aggregation/v2/institutions/#{institution_id}/details"
+        endpoint = "/institution/v2/institutions/#{institution_id}"
         request(:get, endpoint)
       end
     end
